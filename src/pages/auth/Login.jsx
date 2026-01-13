@@ -1,11 +1,6 @@
-import { useRef, useState } from "react";
+import { UiFormInput, UiFormPassword } from "@/components/UiFormInput";
 
 export const Login = () => {
-  const [isShowPassword, setShowPassword] = useState(false);
-  const showPassword = useRef(null);
-  const handleTypeOfPassword = () => {
-    setShowPassword(() => showPassword.current.checked);
-  };
   return (
     <section className="pt-12 h-dvh flex-center px-3">
       <div className="shadow-md w-full max-w-2xs rounded-lg overflow-hidden">
@@ -16,40 +11,9 @@ export const Login = () => {
         </div>
 
         <form className="w-full p-4 space-y-3">
-          <div className="w-full flex flex-col">
-            <label htmlFor="username">
-              username <small className="text-red-500">*</small>
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              className="border border-neutral-400 px-2 py-1 rounded"
-            />
-          </div>
+          <UiFormInput idName="username" label="username" required={true} />
 
-          <div className="w-full flex flex-col">
-            <label htmlFor="username">
-              password <small className="text-red-500">*</small>
-            </label>
-            <input
-              type={isShowPassword ? "text" : "password"}
-              id="username"
-              name="username"
-              className="border border-neutral-400 px-2 py-1 rounded"
-            />
-
-            <div className="text-xs flex gap-1 items-center justify-end mt-1 italic">
-              <label htmlFor="show-password">show password</label>
-              <input
-                ref={showPassword}
-                type="checkbox"
-                name="show-password"
-                id="show-password"
-                onChange={handleTypeOfPassword}
-              />
-            </div>
-          </div>
+          <UiFormPassword idName="password" label="password" />
 
           <div className="mt-5">
             <button

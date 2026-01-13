@@ -1,5 +1,6 @@
 import { BiDotsHorizontal } from "@react-icons/all-files/bi/BiDotsHorizontal";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router";
 
 const user = [
   {
@@ -24,14 +25,16 @@ const user = [
 
 const DataUser = ({ id, name, username }) => {
   const [isActionActive, setActionActive] = useState(false);
+  const navigate = useNavigate();
   const handleAction = () => {
     setActionActive(() => !isActionActive);
   };
 
   const handleUpdate = () => {
     handleAction();
+    navigate(`${id}/update`);
   };
-  const handleDelete = () => {
+  const handleDelete = (id) => {
     handleAction();
   };
   return (
@@ -70,7 +73,7 @@ const DataUser = ({ id, name, username }) => {
           </button>
           <button
             type="button"
-            onClick={handleUpdate}
+            onClick={() => handleUpdate(id)}
             className={[
               isActionActive ? "" : "hidden",
               "px-2 py-1 bg-indigo-500 rounded text-white",
@@ -110,9 +113,11 @@ export const UserListTable = () => {
         ))}
       </section>
 
-      <button className="size-10 flex-center rounded-full bg-emerald-100 outline-2 outline-emerald-600 fixed bottom-5 right-3 opacity-50 hover:opacity-100 transition-opacity">
+      <Link
+        to="create"
+        className="size-10 flex-center rounded-full bg-emerald-100 outline-2 outline-emerald-600 fixed bottom-5 right-3 opacity-50 hover:opacity-100 transition-opacity">
         <span className="text-3xl font-semibold text-emerald-600">+</span>
-      </button>
+      </Link>
     </main>
   );
 };

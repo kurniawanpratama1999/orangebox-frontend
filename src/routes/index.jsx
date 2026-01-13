@@ -7,8 +7,10 @@ import { UserListTable } from "@/pages/admin/user/ListTable";
 import { UserFormInput } from "@/pages/admin/user/FormInput";
 import { AudienceLayout } from "@/layouts/Audience";
 import { NotFound } from "@/pages/NotFound";
+import { ProductListTable } from "@/pages/admin/product/ListTable";
 
 export const router = createBrowserRouter([
+  // GLOBAL
   {
     path: "/",
     Component: AudienceLayout,
@@ -20,6 +22,7 @@ export const router = createBrowserRouter([
     ],
   },
 
+  // LOGIN
   {
     path: "/auth",
     Component: AuthLayout,
@@ -32,11 +35,14 @@ export const router = createBrowserRouter([
     ],
   },
 
+  // ADMIN
   {
     path: "/admin",
     Component: AdminLayout,
     children: [
       { index: true, element: <Navigate to="user" replace /> },
+
+      // USERS
       {
         path: "user",
         children: [
@@ -45,7 +51,30 @@ export const router = createBrowserRouter([
             Component: UserListTable,
           },
           {
-            path: "update",
+            path: "create",
+            Component: UserFormInput,
+          },
+          {
+            path: ":id/update",
+            Component: UserFormInput,
+          },
+        ],
+      },
+
+      // PRODUCTS
+      {
+        path: "product",
+        children: [
+          {
+            index: true,
+            Component: ProductListTable,
+          },
+          {
+            path: "create",
+            Component: UserFormInput,
+          },
+          {
+            path: ":id/update",
             Component: UserFormInput,
           },
         ],
