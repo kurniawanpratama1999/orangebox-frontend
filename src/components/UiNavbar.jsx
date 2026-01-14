@@ -1,21 +1,20 @@
-import { Link, useLocation } from "react-router";
+import { NavLink } from "react-router";
 import { BiMenu } from "@react-icons/all-files/bi/BiMenu";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
 const CurrentLocation = ({ to, children }) => {
-  const location = useLocation();
   const linkStyle =
     "font-montserrat hover:font-semibold hover:italic transition-all";
+
   return (
-    <Link
+    <NavLink
       to={to}
-      className={[
-        location.pathname == to ? "font-bold" : "font-normal",
-        linkStyle,
-      ].join(" ")}>
+      className={({ isActive }) =>
+        (isActive ? "font-bold" : "font-normal") + " " + linkStyle
+      }>
       {children}
-    </Link>
+    </NavLink>
   );
 };
 
@@ -92,7 +91,7 @@ export const UiNavbarDashboard = () => {
         isMenuActive={isMenuActive}
         menus={[
           { to: "/admin/user", label: "User Active" },
-          { to: "/", label: "Product Categories" },
+          { to: "/admin/product", label: "Product Categories" },
           { to: "/", label: "Product Items" },
           { to: "/", label: "Profile Owner" },
           { to: "/", label: "Profile UMKM" },
