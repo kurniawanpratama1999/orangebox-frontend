@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { AiFillEye } from "@react-icons/all-files/ai/AiFillEye";
 import { AiFillEyeInvisible } from "@react-icons/all-files/ai/AiFillEyeInvisible";
+import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
 
 export const UiFormInput = ({ idName, label, required, ...props }) => {
   return (
@@ -55,6 +56,27 @@ export const UiFormPassword = ({ idName, label, required, ...props }) => {
           />
         </label>
       </div>
+    </div>
+  );
+};
+
+export const UiFormSearch = ({ idName, ...props }) => {
+  return (
+    <div className="flex gap-x-2">
+      <label
+        htmlFor={idName}
+        className="bg-orange-100 rounded-full w-full max-w-3xs flex items-center pl-2 shadow">
+        <input
+          type="search"
+          name={idName}
+          id={idName}
+          className="px-2 py-1 border-0 outline-0 w-full"
+          {...props}
+        />
+        <button type="button" className="px-2 py-1 block text-neutral-500">
+          <BiSearch />
+        </button>
+      </label>
     </div>
   );
 };

@@ -23,7 +23,7 @@ const PasswordFormInput = () => {
   );
 };
 
-export const UserFormInput = () => {
+export const UserFormControl = () => {
   // HOOKS
   const params = useParams();
   const navigate = useNavigate();
