@@ -16,7 +16,7 @@ export const ProductDataList = () => {
       <UiList
         datas={products}
         renderItems={(product) => (
-          <>
+          <div>
             <div className="flex gap-x-2">
               <div className="min-h-15 max-h-15 min-w-15 max-w-15 bg-orange-300 border"></div>
               <div className="text-orange-800">
@@ -55,7 +55,7 @@ export const ProductDataList = () => {
                 Rp {product.price.toLocaleString("id-ID")}
               </p>
             </div>
-          </>
+          </div>
         )}
       />
     </>

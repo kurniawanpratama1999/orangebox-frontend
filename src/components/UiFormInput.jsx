@@ -2,18 +2,19 @@ import { useRef, useState } from "react";
 import { AiFillEye } from "@react-icons/all-files/ai/AiFillEye";
 import { AiFillEyeInvisible } from "@react-icons/all-files/ai/AiFillEyeInvisible";
 import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
+import { useNavigate, useParams } from "react-router";
 
 export const UiFormInput = ({ idName, label, required, ...props }) => {
   return (
     <div className="flex flex-col">
-      <label htmlFor={idName} className="text-neutral-700">
+      <label htmlFor={idName} className="text-neutral-600">
         {label} {required && <small className="text-red-500">*</small>}
       </label>
       <input
         type="text"
         name={idName}
         id={idName}
-        className="border border-neutral-400 px-3 py-1 bg-neutral-100"
+        className="border-2 border-black/10 px-3 py-1 bg-black/5 rounded"
         required={required}
         {...props}
       />
@@ -32,17 +33,17 @@ export const UiFormPassword = ({ idName, label, required, ...props }) => {
       <label htmlFor={idName} className="text-neutral-700">
         {label} {required && <small className="text-red-500">*</small>}
       </label>
-      <div className="border border-neutral-400 bg-neutral-100 flex flex-row">
+      <div className="border-2 border-black/10 bg-black/5 rounded flex flex-row">
         <input
           name={idName}
           id={idName}
           type={isShowPassword ? "text" : "password"}
-          className="w-full px-3 py-1"
+          className="w-full px-3 py-1 bg-transparent"
           {...props}
         />
         <label
           htmlFor={`show-${idName}`}
-          className="px-2 bg-neutral-300 flex items-center">
+          className="px-2 bg-black/8 flex items-center">
           <span className="text-black">
             {isShowPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
           </span>
@@ -78,5 +79,31 @@ export const UiFormSearch = ({ idName, ...props }) => {
         </button>
       </label>
     </div>
+  );
+};
+
+export const UiFormControl = ({ formTitle, renderInput, renderAction }) => {
+  const params = useParams();
+  const isUpdate = Boolean(params.id);
+  const elForm = useRef(null);
+
+  return (
+    <section>
+      <div className="w-full max-w-xs mx-auto min-[320px]:shadow rounded bg-orange-100">
+        <div
+          className={[
+            isUpdate ? "bg-indigo-500" : "bg-emerald-500",
+            "font-bold text-xl py-1 px-2 text-white shadow rounded-t",
+          ].join(" ")}>
+          {isUpdate ? `Form Update ${formTitle}` : `Form New ${formTitle}`}
+        </div>
+        <form ref={elForm} className="mt-3 space-y-3 px-3 pb-3">
+          {renderInput()}
+          <div className="text-sm font-semibold flex gap-x-2 mt-6">
+            {renderAction(isUpdate)}
+          </div>
+        </form>
+      </div>
+    </section>
   );
 };

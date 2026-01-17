@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import { UiFormSearch } from "./UiFormInput";
 import { BiPlus } from "@react-icons/all-files/bi/BiPlus";
 
@@ -26,15 +27,17 @@ export const UiList = ({ datas, uniqueKey, renderItems, children }) => {
   return (
     <section className="relative grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-3">
       {datas.map((data) => (
-        <article
+        <NavLink
           key={`${uniqueKey}-${data.id}-${data.name}`}
-          className="flex items-center gap-x-2 px-3 py-2 rounded bg-orange-100 shadow">
+          to={`${data.id}/update`}
+          className="flex items-center gap-x-2 px-3 py-2 rounded bg-orange-100 shadow hover:pl-4 transition-[padding-left]">
           {children}
           {renderItems(data)}
-        </article>
+        </NavLink>
       ))}
 
-      <button
+      <NavLink
+        to="create"
         className={[
           "fixed bottom-3 right-3 w-fit",
           "bg-orange-600 opacity-50 hover:opacity-100 text-orange-300",
@@ -42,7 +45,7 @@ export const UiList = ({ datas, uniqueKey, renderItems, children }) => {
         ].join(" ")}>
         <BiPlus />
         <span className="text-base">Tambah Data</span>
-      </button>
+      </NavLink>
     </section>
   );
 };
