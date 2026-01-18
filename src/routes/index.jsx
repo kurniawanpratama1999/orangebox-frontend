@@ -17,6 +17,7 @@ import { categoryRoutes } from "@/pages/admin/category/category.routes";
 import { productRoutes } from "@/pages/admin/product/product.routes";
 import { testimoniRoutes } from "@/pages/admin/testimoni/testimoni.routes";
 import { merchantRoutes } from "@/pages/admin/merchant/merchant.routes";
+import { profileRoutes } from "@/pages/admin/profile_umkm/profile.routes";
 
 export const router = createBrowserRouter([
   // GLOBAL
@@ -65,6 +66,9 @@ export const router = createBrowserRouter([
 
       // MERCHANT
       merchantRoutes,
+
+      // PROFILE UMKM
+      profileRoutes,
     ],
   },
 

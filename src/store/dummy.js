@@ -348,16 +348,43 @@ export const useDummiesDataStore = {
     },
   ],
 
-  umkm: {
-    name: "orangebox",
-    address: "",
-    title: "",
-    description: "",
-    cta: "",
-    location: "",
-
-    phone: "",
-    email: "",
-    whatsapp: "",
-  },
+  umkm: [
+    {
+      title: "Name",
+      description: "PT Maju Jaya Sejahtera",
+    },
+    {
+      title: "Address",
+      description: "Jl. Sudirman No. 123, Jakarta Pusat, DKI Jakarta",
+    },
+    {
+      title: "Title",
+      description: "Solusi Digital Terpercaya untuk Bisnis Anda",
+    },
+    {
+      title: "Description",
+      description:
+        "Kami menyediakan layanan pengembangan website, aplikasi mobile, dan sistem informasi untuk membantu bisnis Anda tumbuh lebih cepat dan efisien.",
+    },
+    {
+      title: "Click to Action",
+      description: "Hubungi Kami Sekarang",
+    },
+    {
+      title: "Location",
+      description: "Jakarta, Indonesia",
+    },
+    {
+      title: "Phone",
+      description: "+62 21 555 7890",
+    },
+    {
+      title: "Email",
+      description: "info@majujayasejahtera.co.id",
+    },
+    {
+      title: "Whatsapp",
+      description: "+62 812 3456 7890",
+    },
+  ],
 };

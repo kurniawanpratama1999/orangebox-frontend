@@ -61,7 +61,9 @@ const Header = () => {
               </UiCurrentLocation>
             </li>
             <li>
-              <UiCurrentLocation to="">Profile UMKM</UiCurrentLocation>
+              <UiCurrentLocation to="/admin/profile-umkm">
+                Profile UMKM
+              </UiCurrentLocation>
             </li>
             <li>
               <UiCurrentLocation to="/admin/merchant">
