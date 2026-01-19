@@ -21,7 +21,7 @@ export const AudienceLayout = () => {
           </nav>
         </div>
       </header>
-      <main>
+      <main className="max-w-dvw overflow-hidden">
         <Outlet />
       </main>
     </>
