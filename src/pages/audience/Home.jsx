@@ -1,230 +1,33 @@
-import { BiCurrentLocation } from "@react-icons/all-files/bi/BiCurrentLocation";
-import { BsStarFill } from "@react-icons/all-files/bs/BsStarFill";
-
-const Hero = () => {
+export const Home = () => {
   return (
-    <section id="hero" className="h-[80dvh] relative overflow-hidden">
-      <img
-        src="/images/hero.jpg"
-        alt="hero"
-        className="absolute -z-1 top-0 right-0 h-full object-center object-cover"
-      />
+    <>
+      <HeroSection />
+      <FavoriteMenu />
+      <Fasilitas />
+      <CTA />
+      <Testimoni />
+      <Address />
+    </>
+  );
+};
 
-      <div className="h-full w-full flex flex-col justify-end bg-linear-0 from-orange-900/60 px-3 py-2">
-        <h2 className="text-2xl font-extrabold text-orange-50 text-shadow-[.5px_.5px_.5px_black] py-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </h2>
-        <div className="text-orange-100 flex items-center gap-x-1">
-          <BiCurrentLocation />
-          <h3 className="font-semibold">Our Location :</h3>
-        </div>
-        <p className="text-xs text-white">
-          Jl. Peninggaran Barat II, Keboyoran Lama Utara, Jakarta Selatan,
-          Jakarta
+const Address = () => {
+  return (
+    <section className="bg-neutral-300 pb-5">
+      <div className="w-full h-42 bg-black/5"></div>
+      <div className="px-2 mt-1">
+        <h2 className="font-bold text-lg">Lokasi kami ada di:</h2>
+        <p className="text-sm">
+          Jalan Peninggaran Barat II, Kebayoran Lama Utara, Kebayoran Lama,
+          Jakarta Selatan.
         </p>
       </div>
-    </section>
-  );
-};
 
-const Facilities = () => {
-  return (
-    <section id="location" className="px-2 text-black bg-orange-700/5 py-5">
-      <h2 className="font-semibold text-lg bg-orange-600 text-white px-7 py-px rounded-full w-fit mx-auto mb-4">
-        Fasilitas
-      </h2>
-      <div className="grid grid-cols-3 gap-x-3 gap-y-5">
-        {[
-          { img: "restaurant.png", name: "Roof top" },
-          { img: "mosque.png", name: "Mushola" },
-          { img: "toilets.png", name: "Toilet" },
-          { img: "wifi-signal.png", name: "Wi-Fi" },
-          { img: "live-music.png", name: "Live Music" },
-          { img: "phone-charger.png", name: "Charging" },
-        ].map((v, i) => (
-          <div key={i} className="w-full text-center">
-            <div className="w-full aspect-square text-xs font-bold p-2">
-              <img
-                src={"/images/" + v.img}
-                alt={v.img}
-                className="w-full h-full"
-              />
-            </div>
-            <p className="font-semibold">{v.name}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-const Recommended = () => {
-  return (
-    <section className="py-5 ">
-      <h4 className="text-lg font-semibold text-white bg-orange-600 px-7 py-px w-fit rounded-full mx-auto mb-4">
-        Our Best Seller
-      </h4>
-
-      <div className="space-y-5 px-3 py-2">
-        <div className="">
-          <h5 className="px-2 font-semibold mb-1">Coffee</h5>
-          <div className="w-full h-32 flex overflow-x-auto gap-x-3">
-            {[1, 2, 3, 4, 5].map((v, i) => {
-              return (
-                <div
-                  key={"coffee-" + i}
-                  className="h-full min-w-4/5 shadow bg-orange-300 flex-center">
-                  <span className="font-bold text-2xl">{v}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="">
-          <h5 className="px-2 font-semibold mb-1">Snacks</h5>
-          <div className="w-full h-32 flex overflow-x-auto gap-x-3">
-            {[1, 2, 3, 4, 5].map((v, i) => {
-              return (
-                <div
-                  key={"snacks-" + i}
-                  className="h-full min-w-4/5 shadow bg-orange-300 flex-center">
-                  <span className="font-bold text-2xl">{v}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="">
-          <h5 className="px-2 font-semibold mb-1">Food</h5>
-          <div className="w-full h-32 flex overflow-x-auto gap-x-3">
-            {[1, 2, 3, 4, 5].map((v, i) => {
-              return (
-                <div
-                  key={"food-" + i}
-                  className="h-full min-w-4/5 shadow bg-orange-300 flex-center">
-                  <span className="font-bold text-2xl">{v}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-const MoreCTA = () => {
-  return (
-    <section className="w-full max-w-dvw bg-orange-700/5">
-      <div className="overflow-hidden">
-        <img
-          src="/images/cta.png"
-          className="drop-shadow-lg drop-shadow-black"
-        />
-      </div>
-
-      <div className="relative px-3 grid pb-5">
-        <h5 className="text-left font-semibold text-lg text-orange-800">
-          Kenapa harus OrangeBox ?
-        </h5>
-        <p className="text-sm text-left">
-          Kami memiliki lebih dari 30 menu yang siap untuk menemani kegiatan
-          anda. Kami menawarkan harga yang terjangkau untuk Gen-Z sampai
-          Gen-Boomers.
-        </p>
-
-        <button className="px-7 py-1 rounded-full bg-orange-600 shadow w-fit text-xs mt-5 text-white">
-          Kunjungi kami
+      <div className="mt-3 px-2 flex gap-x-3">
+        <button className="px-4 py-1 text-sm rounded bg-orange-600 text-white">
+          Arahkan
         </button>
-      </div>
-    </section>
-  );
-};
-
-const PlaceCollection = () => {
-  return (
-    <section className="py-5 ">
-      <h6 className="px-3 text-lg font-semibold text-orange-800 mb-1">
-        Our Place
-      </h6>
-      <div className="grid gap-4">
-        <div className="relative w-full h-32 bg-orange-300 row-start-1 col-span-2 shadow">
-          <span className="absolute font-semibold bottom-0 left-0 right-0 italic bg-black/5 px-2 py-1 text-sm text-white text-shadow-[.5px_.5px_0px_black]">
-            ROOF TOP
-          </span>
-        </div>
-        <div className="relative w-full h-32 bg-orange-300 row-start-2 col-start-1 shadow">
-          <span className="absolute font-semibold bottom-0 left-0 right-0 italic bg-black/5 px-2 py-1 text-sm text-white text-shadow-[.5px_.5px_0px_black]">
-            LIVE MUSIC
-          </span>
-        </div>
-        <div className="relative w-full h-32 bg-orange-300 row-start-2 col-start-2 shadow">
-          <span className="absolute font-semibold bottom-0 left-0 right-0 italic bg-black/5 px-2 py-1 text-sm text-white text-shadow-[.5px_.5px_0px_black]">
-            LONG TABLE
-          </span>
-        </div>
-        <div className="relative w-full h-32 bg-orange-300 row-start-3 col-span-2 shadow">
-          <span className="absolute font-semibold bottom-0 left-0 right-0 italic bg-black/5 px-2 py-1 text-sm text-white text-shadow-[.5px_.5px_0px_black]">
-            CLEAN KITCHEN
-          </span>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Testimoni = () => {
-  return (
-    <section className="py-5">
-      <h4 className="text-center font-semibold text-lg text-orange-800">
-        Apa Kata Mereka ?
-      </h4>
-      <div className="px-3 py-2">
-        <div className="w-full flex overflow-x-auto gap-x-3">
-          {[
-            { name: "Kurniawan", desc: "Makanannya enak dan murah.", star: 5 },
-            { name: "Nabilla", desc: "Kopinya paling nagih.", star: 5 },
-            {
-              name: "Riyan",
-              desc: "Ada nasi goreng, jadi gak cuma ngopi aja.",
-              star: 5,
-            },
-            { name: "Fajar", desc: "Cocok untuk bawa keluarga juga.", star: 5 },
-            {
-              name: "Rizky",
-              desc: "Tempatnya bersih dan enak, kadang ada Live Musik juga.",
-              star: 5,
-            },
-          ].map((v, i) => {
-            return (
-              <div key={"coffee-" + i} className="min-w-full p-5 rounded">
-                <div className="w-52 h-52 bg-orange-300 mx-auto rounded-full shadow"></div>
-                <div className="text-orange-800 mt-4">
-                  <div className="text-2xl flex gap-1 justify-center mb-2">
-                    {Array.from({ length: v.star }, (_, iStar) => (
-                      <BsStarFill key={"star" + iStar} />
-                    ))}
-                  </div>
-                  <p className="italic text-center max-w-xs mx-auto">
-                    "{v.desc}"
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Booking = () => {
-  return (
-    <section className="py-5">
-      <div className="flex-center flex-col bg-orange-200 min-h-32 text-orange-800">
-        <h5 className="font-semibold">Booking Tempat untuk Keperluan Acara</h5>
-        <p className="text-sm text-black/80">Kami selalu siap!</p>
-        <button className="px-7 py-px bg-orange-600 text-white shadow rounded-full mt-4">
+        <button className="px-4 py-1 text-sm rounded border border-orange-600 text-orange-700 font-semibold bg-orange-200">
           Hubungi Kami
         </button>
       </div>
@@ -232,56 +35,187 @@ const Booking = () => {
   );
 };
 
-const Footer = () => {
+const Testimoni = () => {
+  const list = [
+    {
+      name: "Abdul Khodir",
+      said: "Tempatnya nyaman banget, cocok kalau mau nugas.",
+    },
+    {
+      name: "Nabilla Pradisa",
+      said: "Makananya enak dan murah, apalagi cemilannya.",
+    },
+    {
+      name: "Kurniawan Pratama",
+      said: "Kopinya bikin nagih, pengennya nambah terus.",
+    },
+    {
+      name: "Riyan Artha",
+      said: "ada wifi dan colokan, jadi bisa sambil bawa laptop untuk ngerjain tugas",
+    },
+  ];
   return (
-    <footer className="text-orange-50">
-      <h5 className="text-orange-800 px-3 font-semibold text-lg"># Penutup</h5>
-      <div className="w-full h-32 bg-orange-200"></div>
-
-      <div className="text-sm px-3 space-y-3 text-center py-3 bg-orange-600">
-        <div>
-          <h6 className="font-semibold">Alamat:</h6>
-          <p className="text-xs">
-            Jl. Peninggaran Barat II, Keboyoran Lama Utara, Jakarta Selatan,
-            Jakarta
-          </p>
-        </div>
-        <div>
-          <h6 className="font-semibold">Whatsapp:</h6>
-          <p className="text-xs">0863 1234 5678</p>
-        </div>
-        <div>
-          <h6 className="font-semibold">Instagram:</h6>
-          <p className="text-xs">@orangebox_</p>
-        </div>
+    <section className="py-5 bg-neutral-300">
+      <div className="px-2">
+        <h2 className="font-bold text-2xl leading-none">Apa Kata Mereka?</h2>
+        <span className="text-xs text-orange-700">
+          (Geser untuk lihat lainnya)
+        </span>
       </div>
 
-      <div className="flex item-center justify-center gap-x-2 flex-wrap text-xs px-3 bg-black/10 py-2">
-        <a href="#">Home</a>
-        <span>|</span>
-        <a href="#">Fasilitas</a>
-        <span>|</span>
-        <a href="#">Best Seller</a>
-        <span>|</span>
-        <a href="#">Place Collection</a>
+      <div className="mt-3 px-2 py-4 flex gap-x-3 overflow-x-auto ">
+        {list.map((item, index) => {
+          return (
+            <div
+              key={"testimoni-" + index}
+              className="min-w-4xs max-w-xs bg-black/5 shadow rounded pt-5 pb-3">
+              <div className="px-5">
+                <div className="w-full aspect-square rounded-full bg-white/20"></div>
+              </div>
+              <div className="px-2 mt-2 text-center text-neutral-800">
+                <h2 className="text-xl font-bold">{item.name}</h2>
+                <p className="text-sm italic">"{item.said}"</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
-    </footer>
+    </section>
   );
 };
 
-const Merchant = () => {};
-
-export const Home = () => {
+const CTA = () => {
   return (
-    <>
-      <Hero />
-      <Facilities />
-      <Recommended />
-      <MoreCTA />
-      <PlaceCollection />
-      <Testimoni />
-      <Booking />
-      <Footer />
-    </>
+    <section className="pb-5 bg-black/5">
+      <div className="bg-black/10 h-42 flex-center">Gambar</div>
+      <div className="px-2 mt-2">
+        <h2 className="text-xl font-bold text-center">
+          Kamu juga bisa booking tempat untuk acara loh
+        </h2>
+        <button className="block w-fit mx-auto mt-3 text-sm px-4 py-1 rounded bg-orange-600 text-white">
+          Beritahu Kami
+        </button>
+      </div>
+    </section>
+  );
+};
+
+const Fasilitas = () => {
+  const list = [
+    { name: "Live Music", src: "" },
+    { name: "Toilet", src: "" },
+    { name: "Stop Kontak", src: "" },
+    { name: "Meja Panjang", src: "" },
+    { name: "Musholah", src: "" },
+    { name: "Roof Top", src: "" },
+  ];
+  return (
+    <section className="py-5 px-2 container mx-auto bg-linear-180 from-neutral-300 to-black/5">
+      <div>
+        <h2 className="text-2xl font-bold leading-none">Fasilitas & Tempat</h2>
+        <span className="text-xs italic">(Scroll sampai bawah)</span>
+      </div>
+      <div className="mt-2 flex flex-wrap gap-5">
+        {list.map(({ name }, i) => {
+          return (
+            <div
+              key={"fasilitas" + i}
+              className="relative w-full h-44 bg-neutral-200 rounded shadow">
+              <div className="absolute bottom-0 left-0 right-0 p-2 bg-black/5">
+                <p className="text-shadow-2xs text-shadow-white">{name}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
+
+const FavoriteMenu = () => {
+  const menu = [
+    { name: "Coffee", list: [1, 2, 3, 4, 5] },
+    { name: "Snacks", list: [1, 2, 3, 4, 5] },
+    { name: "Foods", list: [1, 2, 3, 4, 5] },
+  ];
+  return (
+    <section className="py-5 px-2 container mx-auto">
+      <div className="text-center">
+        <h2 className="font-bold text-2xl leading-none">Favorite Menu</h2>
+        <span className="text-xs italic text-orange-600">
+          (Geser untuk lihat lainnya.)
+        </span>
+      </div>
+
+      {menu.map(({ name, list }, i) => {
+        return (
+          <div
+            key={"parent-" + i}
+            className="p-2 bg-neutral-200 rounded mt-3 shadow">
+            <h3 className="text-lg font-semibold mb-2">{name}</h3>
+            <div className="overflow-x-auto flex gap-x-3">
+              {list.map((v, iList) => {
+                return (
+                  <div
+                    key={name + iList}
+                    className="min-w-4xs w-full max-w-xs bg-black/5 rounded p-2 shadow">
+                    <div className="w-full aspect-square bg-black/5 rounded mb-2"></div>
+                    <div className="text-xs">
+                      <h4 className="text-sm font-semibold">
+                        {name} {v}
+                      </h4>
+                      <p className="line-clamp-2">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Architecto, ducimus!
+                      </p>
+                      <p className="text-orange-600 text-base mt-3 font-semibold text-end">
+                        Rp 20.000
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+
+      <button className="px-4 py-1 rounded mt-5 block w-fit mx-auto font-semibold hover:underline text-sm bg-orange-600 text-white shadow">
+        Lihat Menu Lengkap
+      </button>
+    </section>
+  );
+};
+
+const HeroSection = () => {
+  return (
+    <section id="hero" className="relative bg-neutral-300 min-h-dvh">
+      <div className="w-full h-dvh relative">
+        <div className="absolute top-0 left-0 w-full h-full bg-linear-180 from-neutral-300/30 from-60% to-neutral-300"></div>
+        <img
+          src="/images/hero-image.jpg"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      <div className="absolute bottom-0 left-0 w-full">
+        <div className="max-w-sm mx-auto px-2 py-5">
+          <h1 className="inline text-xl">Satu Tempat, Semua Rasa Favoritmu.</h1>
+          <h2 className="inline ml-2 text-xl font-extrabold">
+            Ngopi santai, Makan Puas...
+          </h2>
+          <p className="font-google">
+            Dari aroma kopi yang menggugah selera hingga hidangan favorit yang
+            siap menemani waktu santai atau kerja.
+          </p>
+
+          <div className="mt-3">
+            <button className="px-4 py-1 rounded bg-orange-500 shadow text-white text-shadow-2xs text-shadow-orange-800">
+              Lihat Menu
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };

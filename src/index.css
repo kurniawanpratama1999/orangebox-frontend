@@ -10,11 +10,8 @@
 }
 
 html {
-  background-color: color-mix(
-    in oklab,
-    var(--color-orange-700) 10%,
-    transparent
-  );
+  background-color: var(--bg-neutral-300);
+  color: var(--color-black);
 }
 
 button {
