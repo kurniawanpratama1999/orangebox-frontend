@@ -27,7 +27,7 @@ const Address = () => {
         <button className="px-4 py-1 text-sm rounded bg-orange-600 text-white">
           Arahkan
         </button>
-        <button className="px-4 py-1 text-sm rounded border border-orange-600 text-orange-700 font-semibold bg-orange-200">
+        <button className="px-4 py-1 text-sm rounded border border-orange-600 text-orange-700 font-semibold bg-neutral-100">
           Hubungi Kami
         </button>
       </div>
@@ -56,14 +56,14 @@ const Testimoni = () => {
   ];
   return (
     <section className="py-5 bg-neutral-300">
-      <div className="px-2">
+      <div className="px-4">
         <h2 className="font-bold text-2xl leading-none">Apa Kata Mereka?</h2>
         <span className="text-xs text-orange-700">
           (Geser untuk lihat lainnya)
         </span>
       </div>
 
-      <div className="mt-3 px-2 py-4 flex gap-x-3 overflow-x-auto ">
+      <div className="mt-3 px-4 py-4 flex gap-x-3 overflow-x-auto ">
         {list.map((item, index) => {
           return (
             <div
@@ -110,7 +110,7 @@ const Fasilitas = () => {
     { name: "Roof Top", src: "" },
   ];
   return (
-    <section className="py-5 px-2 container mx-auto bg-linear-180 from-neutral-300 to-black/5">
+    <section className="py-5 px-4 container mx-auto bg-linear-180 from-neutral-300 to-black/5">
       <div>
         <h2 className="text-2xl font-bold leading-none">Fasilitas & Tempat</h2>
         <span className="text-xs italic">(Scroll sampai bawah)</span>
@@ -139,7 +139,7 @@ const FavoriteMenu = () => {
     { name: "Foods", list: [1, 2, 3, 4, 5] },
   ];
   return (
-    <section className="py-5 px-2 container mx-auto">
+    <section className="py-5 px-4 container mx-auto">
       <div className="text-center">
         <h2 className="font-bold text-2xl leading-none">Favorite Menu</h2>
         <span className="text-xs italic text-orange-600">
@@ -199,7 +199,7 @@ const HeroSection = () => {
       </div>
 
       <div className="absolute bottom-0 left-0 w-full">
-        <div className="max-w-sm mx-auto px-2 py-5">
+        <div className="max-w-sm mx-auto px-4 py-5">
           <h1 className="inline text-xl">Satu Tempat, Semua Rasa Favoritmu.</h1>
           <h2 className="inline ml-2 text-xl font-extrabold">
             Ngopi santai, Makan Puas...
