@@ -13,7 +13,7 @@ export const ProfileFormControl = () => {
       />
 
       <section>
-        <button className="flex gap-x-2 items-center text-xs px-4 py-1 rounded bg-indigo-400 text-white ml-auto">
+        <button className="flex gap-x-2 items-center text-xs px-4 py-1 rounded bg-indigo-600 text-white ml-auto">
           <BsPencil />
           <span>Update</span>
         </button>
@@ -28,7 +28,7 @@ export const ProfileFormControl = () => {
             className="w-full max-w-lg mx-auto mb-6 inline-block">
             <label
               htmlFor={profile.title}
-              className="w-full font-semibold text-lg text-orange-700 mb-1">
+              className="w-full font-semibold text-lg mb-1">
               {profile.title}
             </label>
             {["Description"].includes(profile.title) ? (
@@ -37,14 +37,14 @@ export const ProfileFormControl = () => {
                   name={profile.title}
                   id={profile.title}
                   defaultValue={profile.description}
-                  className="w-full text-sm border-0 border-b border-orange-800 pb-1 outline-0"></textarea>
+                  className="w-full text-sm border-0 border-b pb-1 outline-0"></textarea>
               </>
             ) : (
               <input
                 name={profile.title}
                 defaultValue={profile.description}
                 id={profile.title}
-                className="w-full text-sm border-0 border-b border-orange-800 pb-1 outline-0"
+                className="w-full text-sm border-0 border-b pb-1 outline-0"
               />
             )}
           </div>

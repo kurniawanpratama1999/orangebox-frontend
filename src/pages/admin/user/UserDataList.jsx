@@ -18,7 +18,7 @@ export const UserDataList = () => {
       <UiList
         datas={users}
         renderItems={(user) => (
-          <div className="text-orange-800">
+          <div className="w-full">
             <p className="text-sm font-semibold ">{user.name}</p>
             <p className="text-xs italic">{user.username}</p>
           </div>

@@ -8,7 +8,7 @@ export const UiCurrentLocation = ({ to, children, onClick }) => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        (isActive ? "font-bold" : "font-normal") + " " + linkStyle
+        (isActive ? "font-bold" : "") + " " + linkStyle
       }
       onClick={onClick}>
       {children}

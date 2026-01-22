@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export const Home = () => {
   return (
     <>
@@ -113,7 +115,9 @@ const Fasilitas = () => {
     <section className="py-5 px-4 container mx-auto bg-linear-180 from-neutral-300 to-black/5">
       <div>
         <h2 className="text-2xl font-bold leading-none">Fasilitas & Tempat</h2>
-        <span className="text-xs italic">(Scroll sampai bawah)</span>
+        <span className="text-xs italic text-orange-700">
+          (Scroll sampai bawah)
+        </span>
       </div>
       <div className="mt-2 flex flex-wrap gap-5">
         {list.map(({ name }, i) => {
@@ -180,9 +184,11 @@ const FavoriteMenu = () => {
         );
       })}
 
-      <button className="px-4 py-1 rounded mt-5 block w-fit mx-auto font-semibold hover:underline text-sm bg-orange-600 text-white shadow">
+      <Link
+        to={"menu"}
+        className="px-4 py-1 rounded mt-5 block w-fit mx-auto font-semibold hover:underline text-sm bg-orange-600 text-white shadow">
         Lihat Menu Lengkap
-      </button>
+      </Link>
     </section>
   );
 };
@@ -200,9 +206,11 @@ const HeroSection = () => {
 
       <div className="absolute bottom-0 left-0 w-full">
         <div className="max-w-sm mx-auto px-4 py-5">
-          <h1 className="inline text-xl">Satu Tempat, Semua Rasa Favoritmu.</h1>
-          <h2 className="inline ml-2 text-xl font-extrabold">
-            Ngopi santai, Makan Puas...
+          <h1 className="inline text-xl font-extrabold">
+            Satu Tempat, Semua Rasa Favoritmu.
+          </h1>
+          <h2 className="inline ml-2 text-xl font-extrabold text-orange-600 text-border">
+            Ngopi santai, Makan Puas . . .
           </h2>
           <p className="font-google">
             Dari aroma kopi yang menggugah selera hingga hidangan favorit yang
@@ -210,9 +218,11 @@ const HeroSection = () => {
           </p>
 
           <div className="mt-3">
-            <button className="px-4 py-1 rounded bg-orange-500 shadow text-white text-shadow-2xs text-shadow-orange-800">
+            <Link
+              to={"menu"}
+              className="px-4 py-1 rounded bg-orange-500 shadow text-white text-shadow-2xs text-shadow-orange-800">
               Lihat Menu
-            </button>
+            </Link>
           </div>
         </div>
       </div>

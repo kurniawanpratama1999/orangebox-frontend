@@ -13,7 +13,7 @@ export const ProfileDataList = () => {
       />
 
       <section>
-        <button className="flex gap-x-2 items-center text-xs px-4 py-1 rounded bg-indigo-400 text-white ml-auto">
+        <button className="flex gap-x-2 items-center text-xs px-4 py-1 rounded bg-indigo-600 text-white ml-auto">
           <BsPencil />
           <span>Update</span>
         </button>
@@ -25,10 +25,8 @@ export const ProfileDataList = () => {
         {profileUMKM.map((profile, index) => (
           <article
             key={index}
-            className="space-y-1 w-full max-w-lg border-l-3 border-orange-400 pl-3">
-            <h2 className="font-semibold text-lg text-orange-700">
-              {profile.title}
-            </h2>
+            className="space-y-1 w-full max-w-lg border-l-3 border-neutral-400 pl-3">
+            <h2 className="font-semibold text-lg">{profile.title}</h2>
             <p className="text-sm">{profile.description}</p>
           </article>
         ))}

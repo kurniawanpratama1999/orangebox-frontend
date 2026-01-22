@@ -6,6 +6,7 @@ import { AudienceLayout } from "@/layouts/Audience";
 
 /* PAGES */
 import { Home } from "@/pages/audience/Home";
+import { Menu } from "@/pages/audience/Menu";
 import { Login } from "@/pages/auth/Login";
 
 /* NOTFOUND PAGES */
@@ -18,6 +19,7 @@ import { productRoutes } from "@/pages/admin/product/product.routes";
 import { testimoniRoutes } from "@/pages/admin/testimoni/testimoni.routes";
 import { merchantRoutes } from "@/pages/admin/merchant/merchant.routes";
 import { profileRoutes } from "@/pages/admin/profile_umkm/profile.routes";
+import { MenuLayout } from "@/layouts/Menu";
 
 export const router = createBrowserRouter([
   // GLOBAL
@@ -28,6 +30,16 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+    ],
+  },
+  {
+    path: "/menu",
+    Component: MenuLayout,
+    children: [
+      {
+        index: true,
+        Component: Menu,
       },
     ],
   },

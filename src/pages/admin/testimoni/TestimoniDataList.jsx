@@ -18,7 +18,7 @@ export const TestimoniDataList = () => {
       <UiList
         datas={testimonies}
         renderItems={(testimoni) => (
-          <div className="text-orange-800 w-full">
+          <div className="w-full">
             <p className="text-sm font-semibold ">{testimoni.name}</p>
             <p className="text-xs italic">"{testimoni.desc}"</p>
             <p className="text-xs italic text-right mt-4">- Work as ...</p>

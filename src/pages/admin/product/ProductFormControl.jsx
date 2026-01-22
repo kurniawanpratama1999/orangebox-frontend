@@ -13,8 +13,8 @@ const DefaultFormInput = () => {
 
       <UiFormInput idName="desc" label="Short Description" />
 
-      <fieldset className="border border-neutral-400 bg-neutral-100">
-        <legend className="ml-3 border border-neutral-400 px-2 bg-neutral-100">
+      <fieldset className="border-2 border-black/10 bg-black/5 rounded">
+        <legend className="ml-3 border-2 border-black/10 px-2 bg-neutral-200 rounded">
           Is Populer ?
         </legend>
         <div className="px-2 py-1 flex flex-row gap-x-5">
@@ -34,8 +34,8 @@ const DefaultFormInput = () => {
         </div>
       </fieldset>
 
-      <fieldset className="border border-neutral-400 bg-neutral-100">
-        <legend className="ml-3 border border-neutral-400 px-2 bg-neutral-100">
+      <fieldset className="border-2 border-black/10 bg-black/5 shadow">
+        <legend className="ml-3 border-2 border-black/10 px-2 rounded bg-neutral-200">
           Is Recommended ?
         </legend>
         <div className="px-2 py-1 flex flex-row gap-x-5">

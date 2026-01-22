@@ -66,7 +66,7 @@ export const UiFormSearch = ({ idName, ...props }) => {
     <div className="flex gap-x-2">
       <label
         htmlFor={idName}
-        className="bg-orange-100 rounded-full w-full max-w-3xs flex items-center pl-2 shadow">
+        className="bg-neutral-200 rounded-full w-full max-w-3xs flex items-center pl-2 shadow">
         <input
           type="search"
           name={idName}
@@ -89,10 +89,10 @@ export const UiFormControl = ({ formTitle, renderInput, renderAction }) => {
 
   return (
     <section>
-      <div className="w-full max-w-xs mx-auto min-[320px]:shadow rounded bg-orange-100">
+      <div className="w-full max-w-xs mx-auto min-[320px]:shadow rounded bg-neutral-200">
         <div
           className={[
-            isUpdate ? "bg-indigo-500" : "bg-emerald-500",
+            isUpdate ? "bg-indigo-600" : "bg-emerald-600",
             "font-bold text-xl py-1 px-2 text-white shadow rounded-t",
           ].join(" ")}>
           {isUpdate ? `Form Update ${formTitle}` : `Form New ${formTitle}`}

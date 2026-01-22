@@ -19,7 +19,7 @@ export const CategoryDataList = () => {
       <UiList
         datas={categories}
         renderItems={(category) => (
-          <div className="text-orange-800">
+          <div className="w-full">
             <p className="text-sm font-semibold ">{category.name}</p>
             <p className="text-xs italic">12 items</p>
           </div>

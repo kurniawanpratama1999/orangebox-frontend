@@ -49,7 +49,7 @@ export const UserFormControl = () => {
           </button>
           <button
             className={[
-              isUpdate ? "bg-indigo-400" : "bg-emerald-400",
+              isUpdate ? "bg-indigo-600" : "bg-emerald-600",
               "text-white px-2 py-1 rounded",
             ].join(" ")}>
             Save {isUpdate && "change"}

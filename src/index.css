@@ -11,7 +11,7 @@
 
 html {
   background-color: var(--bg-neutral-300);
-  color: var(--color-black);
+  color: var(--color-neutral-800);
 }
 
 button {
@@ -31,4 +31,12 @@ input[type="number"] {
 
 @utility flex-center {
   @apply flex items-center justify-center;
+}
+
+@utility text-border {
+  text-shadow:
+    0.5px 0.5px 0px black,
+    -0.5px -0.5px 0px black,
+    0px -0.5px 0px black,
+    -0.5px 0px 0px black;
 }

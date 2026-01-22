@@ -16,10 +16,10 @@ export const ProductDataList = () => {
       <UiList
         datas={products}
         renderItems={(product) => (
-          <div>
+          <div className="w-full">
             <div className="flex gap-x-2">
-              <div className="min-h-15 max-h-15 min-w-15 max-w-15 bg-orange-300 border"></div>
-              <div className="text-orange-800">
+              <div className="min-h-15 max-h-15 min-w-15 max-w-15 bg-black/5 border border-neutral-400"></div>
+              <div className="w-full">
                 <p className="text-sm font-semibold">{product.name}</p>
                 <p className="text-xs italic">{product.desc}</p>
               </div>
@@ -27,7 +27,7 @@ export const ProductDataList = () => {
 
             <hr className="border border-black/10 mt-2 mb-1" />
 
-            <div className="text-sm text-orange-800 flex items-center justify-between">
+            <div className="text-sm flex items-center justify-between">
               <p className="flex items-center gap-x-1">
                 {product.pupular ? (
                   <FaStar />
@@ -47,11 +47,11 @@ export const ProductDataList = () => {
                   {product.pupular
                     ? "populer"
                     : product.recommended
-                    ? "rekomendasi"
-                    : ""}
+                      ? "rekomendasi"
+                      : ""}
                 </span>
               </p>
-              <p className="font-semibold">
+              <p className="font-semibold text-orange-600">
                 Rp {product.price.toLocaleString("id-ID")}
               </p>
             </div>
