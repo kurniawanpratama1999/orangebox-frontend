@@ -1,6 +1,26 @@
 import { UiFormInput, UiFormPassword } from "@/components/UiFormInput";
+import { useState } from "react";
 
 export const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = async (e) => {
+    e.preventDefault();
+    console.log({ username, password });
+    // return;
+
+    const response = await fetch("http://localhost:3001/auth/login", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+  };
   return (
     <main className="bg-neutral-300">
       <section className="pt-12 h-dvh flex-center px-3 bg-neutral-300">
@@ -11,10 +31,21 @@ export const Login = () => {
             </h2>
           </div>
 
-          <form className="w-full p-4 space-y-3 bg-neutral-200">
-            <UiFormInput idName="username" label="username" required={true} />
+          <form
+            onSubmit={login}
+            className="w-full p-4 space-y-3 bg-neutral-200">
+            <UiFormInput
+              onChange={(e) => setUsername(e.target.value)}
+              idName="username"
+              label="username"
+              required={true}
+            />
 
-            <UiFormPassword idName="password" label="password" />
+            <UiFormPassword
+              onChange={(e) => setPassword(e.target.value)}
+              idName="password"
+              label="password"
+            />
 
             <div className="mt-5">
               <button
