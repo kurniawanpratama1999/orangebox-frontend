@@ -172,9 +172,16 @@ const Items = () => {
     </section>
   );
 };
+
 export const Menu = () => {
   return (
     <>
+      <button
+        className="px-3 py-1 bg-indigo-300"
+        type="button"
+        onClick={handleOpenModal}>
+        open modal
+      </button>
       <SearchAndSort />
       <Items />
     </>

@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { AiFillEye } from "@react-icons/all-files/ai/AiFillEye";
 import { AiFillEyeInvisible } from "@react-icons/all-files/ai/AiFillEyeInvisible";
 import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 
 export const UiFormInput = ({ idName, label, required, ...props }) => {
   return (

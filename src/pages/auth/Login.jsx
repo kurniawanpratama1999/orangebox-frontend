@@ -1,25 +1,37 @@
 import { UiFormInput, UiFormPassword } from "@/components/UiFormInput";
+import { useModal } from "@/context/ModalContext.jsx";
+import { accessToken } from "@/store/accessToken.js";
+import { useAxios } from "@/store/useAxios.js";
 import { useState } from "react";
 
 export const Login = () => {
+  const { handler } = useModal();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
 
   const login = async (e) => {
     e.preventDefault();
-    console.log({ username, password });
-    // return;
+    setButtonDisabled(true);
 
-    const response = await fetch("http://localhost:3001/auth/login", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
+    useAxios
+      .post("/auth/login", { username, password })
+      .then((res) => {
+        accessToken.current = res.data.data;
 
-    const result = await response.json();
-
-    console.log(result);
+        handler.openModal("Kamu berhasil login", {
+          type: "success",
+          navigate: "/admin",
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+        setButtonDisabled(false);
+        handler.openModal("Kamu gagal login", {
+          type: "failed",
+        });
+      });
   };
   return (
     <main className="bg-neutral-300">
@@ -50,7 +62,8 @@ export const Login = () => {
             <div className="mt-5">
               <button
                 type="submit"
-                className="px-2 py-1 w-full bg-orange-600 rounded font-bold text-white">
+                disabled={isButtonDisabled}
+                className="px-2 py-1 w-full bg-orange-600 disabled:bg-neutral-600 rounded font-bold text-white">
                 Login
               </button>
             </div>

@@ -1,15 +1,21 @@
 import { NavLink } from "react-router";
+import { tv } from "tailwind-variants";
 
 export const UiCurrentLocation = ({ to, children, onClick }) => {
-  const linkStyle =
-    "font-montserrat hover:font-semibold hover:italic transition-all";
+  const navlink = tv({
+    base: "font-montserrat hover:font-semibold hover:italic transition-all",
+    variants: {
+      isActive: {
+        true: "font-bold",
+        false: "font-normal",
+      },
+    },
+  });
 
   return (
     <NavLink
       to={to}
-      className={({ isActive }) =>
-        (isActive ? "font-bold" : "") + " " + linkStyle
-      }
+      className={({ isActive }) => navlink({ isActive })}
       onClick={onClick}>
       {children}
     </NavLink>

@@ -2,17 +2,26 @@ import { UiCurrentLocation } from "@/components/UiCurrentLocation";
 import { BiLogOut } from "@react-icons/all-files/bi/BiLogOut";
 import { BiChevronDown } from "@react-icons/all-files/bi/BiChevronDown";
 import { BiMenuAltLeft } from "@react-icons/all-files/bi/BiMenuAltLeft";
-import { Outlet } from "react-router";
-import { useState } from "react";
+import { Navigate, Outlet } from "react-router";
+import { useEffect, useState } from "react";
+import { useAxios } from "@/store/useAxios.js";
+import { useAuth } from "@/context/AuthContext.jsx";
 
 const Header = () => {
   /* HOOKS */
   const [isProfile, setProfile] = useState(false);
   const [isNavigation, setNavigation] = useState(false);
 
+  // CONTEXT
+  const { user } = useAuth();
+
   // HANDLER
   const toggleProfile = () => setProfile(!isProfile);
   const toggleNavigation = () => setNavigation(!isNavigation);
+  const closeAll = () => {
+    setProfile(false);
+    setNavigation(false);
+  };
   return (
     <>
       <div className="lg:fixed z-99 lg:top-0 lg:left-0 lg:bottom-0 lg:w-4xs lg:bg-neutral-200 lg:flex lg:flex-col lg:shadow-2xl">
@@ -39,6 +48,7 @@ const Header = () => {
         </header>
 
         <div
+          onClick={closeAll}
           className={[
             isNavigation || isProfile ? "fixed" : "hidden",
             "top-0 left-0 right-0 bottom-0 bg-black/5 z-98",
@@ -95,8 +105,10 @@ const Header = () => {
           <div className="flex items-center gap-x-1">
             <div className="size-12 rounded-full bg-black/10"></div>
             <div>
-              <p className="text-sm font-semibold">Kurniawan Pratama</p>
-              <p className="italic text-xs">admin</p>
+              <p className="text-sm font-semibold">
+                {user.name ?? "not found"}
+              </p>
+              <p className="italic text-xs">{user.name ?? "please login"}</p>
             </div>
           </div>
           <hr className="border-white/50 mt-2 mb-1" />
@@ -110,15 +122,46 @@ const Header = () => {
   );
 };
 
+const Loader = () => {
+  return <div className="w-full h-dvh flex-center">Loading...</div>;
+};
+
 export const AdminLayout = () => {
+  const { setUser, isAuth, setIsAuth } = useAuth();
+
+  const doFetch = async () => {
+    try {
+      const fetching = await useAxios.get("/auth/remember-me");
+      const statusCode = fetching.status;
+      if (statusCode == 202) {
+        setUser(fetching.data.data);
+        setIsAuth("ACCEPTED");
+      }
+    } catch (error) {
+      setIsAuth(false);
+    }
+  };
+
+  useEffect(() => {
+    doFetch();
+  }, []);
+
   return (
     <>
-      <Header />
-      <main className="max-lg:pt-12 min-h-dvh bg-neutral-300 lg:relative lg:left-(--container-4xs) w-full lg:max-w-[calc(100dvw-var(--container-4xs))]">
-        <div className="p-2 container mx-auto">
-          <Outlet />
-        </div>
-      </main>
+      {isAuth == "LOADING" ? (
+        <Loader />
+      ) : isAuth == "ACCEPTED" ? (
+        <>
+          <Header />
+          <main className="max-lg:pt-12 min-h-dvh bg-neutral-300 lg:relative lg:left-(--container-4xs) w-full lg:max-w-[calc(100dvw-var(--container-4xs))]">
+            <div className="p-2 container mx-auto">
+              <Outlet />
+            </div>
+          </main>
+        </>
+      ) : (
+        <Navigate to={"/auth"} />
+      )}
     </>
   );
 };

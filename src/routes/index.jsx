@@ -20,69 +20,77 @@ import { testimoniRoutes } from "@/pages/admin/testimoni/testimoni.routes";
 import { merchantRoutes } from "@/pages/admin/merchant/merchant.routes";
 import { profileRoutes } from "@/pages/admin/profile_umkm/profile.routes";
 import { MenuLayout } from "@/layouts/Menu";
+import { RootLayout } from "@/layouts/RootLayout.jsx";
+import { ErrorPage } from "@/pages/Error.jsx";
 
 export const router = createBrowserRouter([
+  {
+    Component: RootLayout,
+    ErrorBoundary: ErrorPage,
+    children: [
+      {
+        path: "/",
+        Component: AudienceLayout,
+        children: [
+          {
+            index: true,
+            Component: Home,
+          },
+        ],
+      },
+      {
+        path: "/menu",
+        Component: MenuLayout,
+        children: [
+          {
+            index: true,
+            Component: Menu,
+          },
+        ],
+      },
+
+      // LOGIN
+      {
+        path: "/auth",
+        Component: AuthLayout,
+        children: [
+          { index: true, element: <Navigate to="login" replace /> },
+          {
+            path: "login",
+            Component: Login,
+          },
+        ],
+      },
+
+      // ADMIN
+      {
+        path: "/admin",
+        element: <AdminLayout />,
+        children: [
+          { index: true, element: <Navigate to="user" replace /> },
+
+          // USERS
+          userRoutes,
+
+          // CATEGORIES
+          categoryRoutes,
+
+          // PRODUCTS
+          productRoutes,
+
+          // TESTIMONI
+          testimoniRoutes,
+
+          // MERCHANT
+          merchantRoutes,
+
+          // PROFILE UMKM
+          profileRoutes,
+        ],
+      },
+
+      { path: "*", Component: NotFound },
+    ],
+  },
   // GLOBAL
-  {
-    path: "/",
-    Component: AudienceLayout,
-    children: [
-      {
-        index: true,
-        Component: Home,
-      },
-    ],
-  },
-  {
-    path: "/menu",
-    Component: MenuLayout,
-    children: [
-      {
-        index: true,
-        Component: Menu,
-      },
-    ],
-  },
-
-  // LOGIN
-  {
-    path: "/auth",
-    Component: AuthLayout,
-    children: [
-      { index: true, element: <Navigate to="login" replace /> },
-      {
-        path: "login",
-        Component: Login,
-      },
-    ],
-  },
-
-  // ADMIN
-  {
-    path: "/admin",
-    Component: AdminLayout,
-    children: [
-      { index: true, element: <Navigate to="user" replace /> },
-
-      // USERS
-      userRoutes,
-
-      // CATEGORIES
-      categoryRoutes,
-
-      // PRODUCTS
-      productRoutes,
-
-      // TESTIMONI
-      testimoniRoutes,
-
-      // MERCHANT
-      merchantRoutes,
-
-      // PROFILE UMKM
-      profileRoutes,
-    ],
-  },
-
-  { path: "*", Component: NotFound },
 ]);

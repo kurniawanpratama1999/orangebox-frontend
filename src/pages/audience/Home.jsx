@@ -16,22 +16,24 @@ export const Home = () => {
 const Address = () => {
   return (
     <section className="bg-neutral-300 pb-5">
-      <div className="w-full h-42 bg-black/5"></div>
-      <div className="px-2 mt-1">
-        <h2 className="font-bold text-lg">Lokasi kami ada di:</h2>
-        <p className="text-sm">
-          Jalan Peninggaran Barat II, Kebayoran Lama Utara, Kebayoran Lama,
-          Jakarta Selatan.
-        </p>
-      </div>
+      <div className="container mx-auto">
+        <div className="w-full h-42 lg:h-80 bg-black/5"></div>
+        <div className="px-2 mt-1 sm:text-center">
+          <h2 className="font-bold text-lg">Lokasi kami ada di:</h2>
+          <p className="text-sm">
+            Jalan Peninggaran Barat II, Kebayoran Lama Utara, Kebayoran Lama,
+            Jakarta Selatan.
+          </p>
+        </div>
 
-      <div className="mt-3 px-2 flex gap-x-3">
-        <button className="px-4 py-1 text-sm rounded bg-orange-600 text-white">
-          Arahkan
-        </button>
-        <button className="px-4 py-1 text-sm rounded border border-orange-600 text-orange-700 font-semibold bg-neutral-100">
-          Hubungi Kami
-        </button>
+        <div className="mt-3 px-2 flex sm:justify-center gap-x-3">
+          <button className="px-4 py-1 text-sm rounded bg-orange-600 text-white">
+            Arahkan
+          </button>
+          <button className="px-4 py-1 text-sm rounded border border-orange-600 text-orange-700 font-semibold bg-neutral-100">
+            Hubungi Kami
+          </button>
+        </div>
       </div>
     </section>
   );
@@ -72,9 +74,9 @@ const Testimoni = () => {
               key={"testimoni-" + index}
               className="min-w-4xs max-w-xs bg-black/5 shadow rounded pt-5 pb-3">
               <div className="px-5">
-                <div className="w-full aspect-square rounded-full bg-white/20"></div>
+                <div className="w-full max-w-4xs mx-auto aspect-square rounded-full bg-white/20"></div>
               </div>
-              <div className="px-2 mt-2 text-center text-neutral-800">
+              <div className="px-2 mt-5 text-center text-neutral-800">
                 <h2 className="text-xl font-bold">{item.name}</h2>
                 <p className="text-sm italic">"{item.said}"</p>
               </div>
@@ -89,7 +91,7 @@ const Testimoni = () => {
 const CTA = () => {
   return (
     <section className="pb-5 bg-black/5">
-      <div className="bg-black/10 h-42 flex-center">Gambar</div>
+      <div className="bg-black/10 h-42 lg:h-80 flex-center">Gambar</div>
       <div className="px-2 mt-2">
         <h2 className="text-xl font-bold text-center">
           Kamu juga bisa booking tempat untuk acara loh
@@ -112,19 +114,19 @@ const Fasilitas = () => {
     { name: "Roof Top", src: "" },
   ];
   return (
-    <section className="py-5 px-4 container mx-auto bg-linear-180 from-neutral-300 to-black/5">
-      <div>
+    <section className="py-5 px-4 bg-linear-180 from-neutral-300 to-black/5">
+      <div className="container mx-auto">
         <h2 className="text-2xl font-bold leading-none">Fasilitas & Tempat</h2>
         <span className="text-xs italic text-orange-700">
           (Scroll sampai bawah)
         </span>
       </div>
-      <div className="mt-2 flex flex-wrap gap-5">
+      <div className="mt-2 flex flex-wrap gap-5 lg:grid lg:grid-cols-2 container mx-auto">
         {list.map(({ name }, i) => {
           return (
             <div
               key={"fasilitas" + i}
-              className="relative w-full h-44 bg-neutral-200 rounded shadow">
+              className="relative w-full h-44 lg:h-72 bg-neutral-200 rounded shadow">
               <div className="absolute bottom-0 left-0 right-0 p-2 bg-black/5">
                 <p className="text-shadow-2xs text-shadow-white">{name}</p>
               </div>
@@ -204,23 +206,23 @@ const HeroSection = () => {
         />
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full">
-        <div className="max-w-sm mx-auto px-4 py-5">
-          <h1 className="inline text-xl font-extrabold">
+      <div className="absolute bottom-0 left-0 w-full sm:flex sm:flex-col sm:justify-center">
+        <div className="max-w-sm sm:max-w-4xl mx-auto px-4 py-5 sm:text-center">
+          <h1 className="inline sm:block text-xl sm:text-4xl font-extrabold">
             Satu Tempat, Semua Rasa Favoritmu.
           </h1>
-          <h2 className="inline ml-2 text-xl font-extrabold text-orange-600 text-border">
+          <h2 className="inline sm:block ml-2 text-xl sm:text-4xl font-extrabold text-orange-600 text-border">
             Ngopi santai, Makan Puas . . .
           </h2>
-          <p className="font-google">
+          <p className="font-google sm:text-2xl sm:mt-3">
             Dari aroma kopi yang menggugah selera hingga hidangan favorit yang
             siap menemani waktu santai atau kerja.
           </p>
 
-          <div className="mt-3">
+          <div className="mt-3 sm:mt-5">
             <Link
               to={"menu"}
-              className="px-4 py-1 rounded bg-orange-500 shadow text-white text-shadow-2xs text-shadow-orange-800">
+              className="px-4 py-1 rounded bg-orange-500 shadow text-white text-shadow-2xs text-shadow-orange-800 sm:text-lg">
               Lihat Menu
             </Link>
           </div>

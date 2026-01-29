@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { UiGotoUp } from "./UiGotoUp";
+import { tv } from "tailwind-variants";
 
 export const UiHeader = () => {
   const [isBgWhite, setBgWhite] = useState(false);
   const [isGotoUpShow, setGotoUpShow] = useState(false);
+
   useEffect(() => {
     const windowEventScroll = () => {
       const scrollY = window.scrollY;
@@ -16,18 +18,26 @@ export const UiHeader = () => {
       window.removeEventListener("scroll", windowEventScroll);
     };
   }, []);
+
+  const headerClass = tv({
+    base: "fixed z-99 top-0 left-0 right-0 h-12 flex items-center justify-between px-4",
+    variants: {
+      isBgWhite: {
+        true: "bg-white/20 backdrop-blur shadow",
+        false: "",
+      },
+    },
+  });
+
+  const headingClass =
+    "text-2xl font-bold text-orange-500 text-shadow-xs text-shadow-black";
+
   return (
     <>
       <UiGotoUp isShow={isGotoUpShow} />
 
-      <header
-        className={[
-          isBgWhite ? "bg-white/20 backdrop-blur shadow" : "",
-          "fixed z-99 top-0 left-0 right-0 h-12 flex items-center justify-between px-4",
-        ].join(" ")}>
-        <h2 className="text-2xl font-bold text-orange-500 text-shadow-xs text-shadow-black">
-          OrangeBox
-        </h2>
+      <header className={headerClass({ isBgWhite })}>
+        <h2 className={headingClass}>OrangeBox</h2>
 
         <div className="">
           <button className="size-7 flex flex-col justify-center gap-1.5">

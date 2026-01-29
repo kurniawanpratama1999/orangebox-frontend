@@ -1,6 +1,7 @@
 import { NavLink } from "react-router";
 import { UiFormSearch } from "./UiFormInput";
 import { BiPlus } from "@react-icons/all-files/bi/BiPlus";
+import { cn } from "tailwind-variants";
 
 export const UiTitleAndSearch = ({ title, searchId, ...props }) => {
   return (
@@ -41,11 +42,11 @@ export const UiList = ({ datas, uniqueKey, renderItems, children }) => {
 
       <NavLink
         to="create"
-        className={[
+        className={cn(
           "fixed bottom-3 right-3 w-fit",
           "bg-emerald-600 opacity-70 hover:opacity-100 text-white",
           "flex-center text-xl shadow p-2 rounded  ",
-        ].join(" ")}>
+        )}>
         <BiPlus />
         <span className="text-base">Tambah Data</span>
       </NavLink>
