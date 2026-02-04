@@ -18,7 +18,7 @@ export const Login = () => {
     useAxios
       .post("/auth/login", { username, password })
       .then((res) => {
-        accessToken.current = res.data.data;
+        accessToken.current = res.data.results;
 
         handler.openModal("Kamu berhasil login", {
           type: "success",

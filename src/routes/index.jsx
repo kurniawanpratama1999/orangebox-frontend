@@ -13,6 +13,7 @@ import { Login } from "@/pages/auth/Login";
 import { NotFound } from "@/pages/NotFound";
 
 /* ROUTINGS */
+
 import { userRoutes } from "@/pages/admin/user/user.routes";
 import { categoryRoutes } from "@/pages/admin/category/category.routes";
 import { productRoutes } from "@/pages/admin/product/product.routes";
@@ -22,6 +23,8 @@ import { profileRoutes } from "@/pages/admin/profile_umkm/profile.routes";
 import { MenuLayout } from "@/layouts/Menu";
 import { RootLayout } from "@/layouts/RootLayout.jsx";
 import { ErrorPage } from "@/pages/Error.jsx";
+import { UploadPhoto } from "@/pages/admin/testing_upload/UploadPhoto.jsx";
+import { AuthProvider } from "@/context/AuthContext.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -59,13 +62,21 @@ export const router = createBrowserRouter([
             path: "login",
             Component: Login,
           },
+          {
+            path: "testing-upload",
+            Component: UploadPhoto,
+          },
         ],
       },
 
       // ADMIN
       {
         path: "/admin",
-        element: <AdminLayout />,
+        element: (
+          <AuthProvider>
+            <AdminLayout />
+          </AuthProvider>
+        ),
         children: [
           { index: true, element: <Navigate to="user" replace /> },
 

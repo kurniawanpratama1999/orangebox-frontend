@@ -66,7 +66,7 @@ useRefreshAxios.interceptors.response.use(
 
     try {
       const response = await useAxios.post("/auth/refresh");
-      const newAccessToken = response.data.data;
+      const newAccessToken = response.data.results;
 
       accessToken.current = newAccessToken;
       processQue(null, newAccessToken);

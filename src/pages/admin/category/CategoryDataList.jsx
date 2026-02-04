@@ -14,9 +14,8 @@ export const CategoryDataList = () => {
     useRefreshAxios
       .get("/category")
       .then((res) => {
-        console.log(res);
-        if (res.status == 202) {
-          setCategories(res.data.data);
+        if (res.status == 200) {
+          setCategories(res.data.results);
         }
       })
       .catch((e) => {

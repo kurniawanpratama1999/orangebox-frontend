@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiFillEye } from "@react-icons/all-files/ai/AiFillEye";
 import { AiFillEyeInvisible } from "@react-icons/all-files/ai/AiFillEyeInvisible";
+import { AiFillFileImage } from "@react-icons/all-files/ai/AiFillFileImage.js";
 import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
 import { useParams } from "react-router";
 
@@ -78,6 +79,90 @@ export const UiFormSearch = ({ idName, ...props }) => {
           <BiSearch />
         </button>
       </label>
+    </div>
+  );
+};
+
+export const UiFormImage = ({ setImageFile, imageUrl, idName = "photo" }) => {
+  const [preview, setPreview] = useState(null);
+
+  const handleChangePhoto = (target) => {
+    const file = target.files[0];
+    if (!file) return;
+
+    setImageFile(file);
+    setPreview(URL.createObjectURL(file));
+  };
+
+  useEffect(() => {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
+  return (
+    <div className="w-full">
+      <div className="w-full max-w-full">
+        {preview || imageUrl ? (
+          <div className="w-full h-full shadow rounded p-1 bg-white">
+            <img
+              src={preview || `http://localhost:3001/uploads/${imageUrl}`}
+              className="w-fit max-w-full mx-auto h-full object-contain rounded"
+            />
+          </div>
+        ) : (
+          <div className="w-full aspect-video bg-neutral-300 flex-center rounded shadow">
+            <AiFillFileImage className="text-7xl text-neutral-200" />
+          </div>
+        )}
+      </div>
+      <label htmlFor={idName} className="block w-full mt-2">
+        <span className="block w-full bg-indigo-300 rounded text-center text-white py-1">
+          Upload Photo
+        </span>
+      </label>
+      <input
+        type="file"
+        name={idName}
+        id={idName}
+        className="hidden"
+        onChange={({ target }) => handleChangePhoto(target)}
+      />
+    </div>
+  );
+};
+
+export const UiFormSelect = ({
+  idName = "",
+  label = "",
+  values = [],
+  value = "",
+  required = true,
+}) => {
+  return (
+    <div className="flex flex-col">
+      <label htmlFor={idName} className="text-neutral-600">
+        {label} {required && <small className="text-red-500">*</small>}
+      </label>
+      <select
+        name={idName}
+        id={idName}
+        className="border-2 border-black/10 px-3 py-1 bg-black/5 rounded">
+        {values.length > 0 &&
+          values.map((v, i) => {
+            return (
+              <option
+                key={v.id + v.name + label}
+                value={v.id}
+                selected={
+                  (value == "" || !value) && i == 0 ? true : v.id == value
+                }>
+                {v.name}
+              </option>
+            );
+          })}
+      </select>
     </div>
   );
 };

@@ -19,7 +19,7 @@ export const UserDataList = () => {
       const res = await useRefreshAxios.get("/user");
 
       setStatus("SUCCESS");
-      setUsers(res.data.data);
+      setUsers(res.data.results);
     } catch (e) {
       setStatus("ERROR");
       setErrorMessage("INTERNAL SERVER ERROR");
@@ -46,9 +46,8 @@ export const UserDataList = () => {
               <p className="text-sm font-semibold ">{user.name}</p>
               <p className="text-xs italic">{user.username}</p>
             </div>
-          )}>
-          <UiListAvatar />
-        </UiList>
+          )}
+          renderAvatar={(user) => <UiListAvatar image={user.photo} />}></UiList>
       ) : status == "ERROR" ? (
         <p>{errorMessage}</p>
       ) : (

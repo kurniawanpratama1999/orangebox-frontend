@@ -1,10 +1,10 @@
-import { UiCurrentLocation } from "@/components/UiCurrentLocation";
-import { BiLogOut } from "@react-icons/all-files/bi/BiLogOut";
-import { BiChevronDown } from "@react-icons/all-files/bi/BiChevronDown";
-import { BiMenuAltLeft } from "@react-icons/all-files/bi/BiMenuAltLeft";
+import { UiCurrentLocation } from "@/components/UiCurrentLocation.jsx";
+import { BiLogOut } from "@react-icons/all-files/bi/BiLogOut.js";
+import { BiChevronDown } from "@react-icons/all-files/bi/BiChevronDown.js";
+import { BiMenuAltLeft } from "@react-icons/all-files/bi/BiMenuAltLeft.js";
+import { BiUser } from "@react-icons/all-files/bi/BiUser.js";
 import { Navigate, Outlet } from "react-router";
-import { useEffect, useState } from "react";
-import { useAxios } from "@/store/useAxios.js";
+import { useState } from "react";
 import { useAuth } from "@/context/AuthContext.jsx";
 
 const Header = () => {
@@ -103,7 +103,16 @@ const Header = () => {
             "lg:top-1 lg:left-[calc(var(--container-4xs)+6px)]",
           ].join(" ")}>
           <div className="flex items-center gap-x-1">
-            <div className="size-12 rounded-full bg-black/10"></div>
+            <div className="size-12 rounded-full bg-black/10 overflow-hidden flex-center">
+              {user?.photo ? (
+                <img
+                  src={`http://localhost:3001/uploads/${user.photo}`}
+                  className="w-full h-full"
+                />
+              ) : (
+                <BiUser className="text-xl" />
+              )}
+            </div>
             <div>
               <p className="text-sm font-semibold">
                 {user.name ?? "not found"}
@@ -127,24 +136,7 @@ const Loader = () => {
 };
 
 export const AdminLayout = () => {
-  const { setUser, isAuth, setIsAuth } = useAuth();
-
-  const doFetch = async () => {
-    try {
-      const fetching = await useAxios.get("/auth/remember-me");
-      const statusCode = fetching.status;
-      if (statusCode == 202) {
-        setUser(fetching.data.data);
-        setIsAuth("ACCEPTED");
-      }
-    } catch (error) {
-      setIsAuth(false);
-    }
-  };
-
-  useEffect(() => {
-    doFetch();
-  }, []);
+  const { isAuth } = useAuth();
 
   return (
     <>

@@ -1,9 +1,10 @@
-import { UiFormInput } from "@/components/UiFormInput.jsx";
+import { UiFormImage, UiFormInput } from "@/components/UiFormInput.jsx";
 
 export const DefaultFormInput = ({ data }) => {
-  const { name, username, setName, setUsername } = data;
+  const { name, username, setName, setUsername, imageUrl, setImageFile } = data;
   return (
     <>
+      <UiFormImage imageUrl={imageUrl} setImageFile={setImageFile} />
       <UiFormInput
         idName="name"
         label="Fullname"

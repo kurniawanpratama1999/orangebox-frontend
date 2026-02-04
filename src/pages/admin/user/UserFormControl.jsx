@@ -15,6 +15,8 @@ export const UserFormControl = () => {
   // SET FOR INPUT
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
 
   // SET FOR UPDATE PASSWORD
   const [isUpdatePassword, setIsUpdatePassword] = useState(false);
@@ -47,9 +49,10 @@ export const UserFormControl = () => {
 
       setStatus("SUCCESS");
 
-      const { data } = res.data;
-      setName(data.name);
-      setUsername(data.username);
+      const { results } = res.data;
+      setName(results.name);
+      setUsername(results.username);
+      setImageUrl(results.photo);
     } catch (error) {
       setStatus("ERROR");
       setErrorMessage("INTERNAL SERVER ERROR");
@@ -73,20 +76,28 @@ export const UserFormControl = () => {
 
   // FOR CREATE
   const handleSave = async () => {
+    handler.openModal("Loading . . .", {
+      type: "info",
+    });
+
     try {
-      await useRefreshAxios.post(`/user`, {
-        name,
-        username,
-        password,
-        password_confirmation: passwordConfirm,
-      });
+      const formData = new FormData();
+
+      formData.append("photo", imageFile);
+      formData.append("name", name);
+      formData.append("username", username);
+      formData.append("password", password);
+      formData.append("password_confirmation", passwordConfirm);
+
+      await useRefreshAxios.post(`/user`, formData);
+      handler.closeModal();
 
       handler.openModal("Berhasil tambah user", {
         type: "success",
         navigate: "/admin/user",
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
       handler.openModal("Gagal tambah user", {
         type: "failed",
       });
@@ -96,9 +107,14 @@ export const UserFormControl = () => {
   // FOR UPDATE
   const handleSaveChange = async () => {
     try {
-      await useRefreshAxios.put(`/user/${id}`, { name, username });
+      const formData = new FormData();
+      formData.append("photo", imageFile);
+      formData.append("name", name);
+      formData.append("username", username);
 
-      setUser({ name, username });
+      const saveChange = await useRefreshAxios.put(`/user/${id}`, formData);
+      const results = saveChange.data.results;
+      setUser({ ...results });
       handler.openModal("Berhasil update user", {
         type: "success",
         navigate: "/admin/user",
@@ -165,7 +181,14 @@ export const UserFormControl = () => {
             <>
               {!isUpdatePassword && (
                 <DefaultFormInput
-                  data={{ name, username, setName, setUsername }}
+                  data={{
+                    name,
+                    username,
+                    setName,
+                    setUsername,
+                    imageUrl: imageUrl,
+                    setImageFile: setImageFile,
+                  }}
                 />
               )}
               {(isUpdatePassword || !id) && (

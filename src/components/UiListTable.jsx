@@ -15,19 +15,17 @@ export const UiTitleAndSearch = ({ title, searchId, ...props }) => {
 export const UiListAvatar = ({
   size = "min-w-20 max-w-20 aspect-square",
   rounded = "rounded",
-  children,
+  image,
 }) => {
-  return (
-    <div
-      className={["bg-black/5 border border-neutral-400", size, rounded].join(
-        " ",
-      )}>
-      {children}
-    </div>
+  const style = cn("bg-black/5 border border-neutral-400", size, rounded);
+  return !image ? (
+    <div className={style}></div>
+  ) : (
+    <img src={"http://localhost:3001/uploads/" + image} className={style} />
   );
 };
 
-export const UiList = ({ datas, uniqueKey, renderItems, children }) => {
+export const UiList = ({ datas, uniqueKey, renderItems, renderAvatar }) => {
   return (
     <section className="relative grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-3">
       {datas.map((data) => (
@@ -35,7 +33,7 @@ export const UiList = ({ datas, uniqueKey, renderItems, children }) => {
           key={`${uniqueKey}-${data.id}-${data.name}`}
           to={`${data.id}/update`}
           className="flex gap-x-2 px-3 py-2 rounded bg-neutral-200 shadow hover:pl-4 transition-[padding-left]">
-          {children}
+          {renderAvatar && renderAvatar(data)}
           {renderItems(data)}
         </NavLink>
       ))}
