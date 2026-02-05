@@ -3,10 +3,26 @@ import {
   UiListAvatar,
   UiTitleAndSearch,
 } from "@/components/UiListTable";
-import { useDummiesDataStore } from "@/store/dummy";
+import { useAxios } from "@/store/useAxios.js";
+import { useEffect, useRef, useState } from "react";
 
 export const TestimoniDataList = () => {
-  const testimonies = useDummiesDataStore.testimonies;
+  const [testimonies, setTestimonies] = useState([]);
+  const fetchTestimony = useRef(null);
+  useEffect(() => {
+    if (fetchTestimony.current) return;
+    fetchTestimony.current = true;
+
+    (async () => {
+      try {
+        const response = await useAxios.get("/testimoy");
+        const { results } = response.data;
+        setTestimonies(results);
+      } catch (error) {
+        console.log("failed for fetch testimonies");
+      }
+    })();
+  }, []);
   return (
     <>
       <UiTitleAndSearch

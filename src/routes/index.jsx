@@ -18,7 +18,7 @@ import { userRoutes } from "@/pages/admin/user/user.routes";
 import { categoryRoutes } from "@/pages/admin/category/category.routes";
 import { productRoutes } from "@/pages/admin/product/product.routes";
 import { testimoniRoutes } from "@/pages/admin/testimoni/testimoni.routes";
-import { merchantRoutes } from "@/pages/admin/merchant/merchant.routes";
+import { sosmedRoutes } from "@/pages/admin/sosmed/sosmed.routes";
 import { profileRoutes } from "@/pages/admin/profile_umkm/profile.routes";
 import { MenuLayout } from "@/layouts/Menu";
 import { RootLayout } from "@/layouts/RootLayout.jsx";
@@ -93,7 +93,7 @@ export const router = createBrowserRouter([
           testimoniRoutes,
 
           // MERCHANT
-          merchantRoutes,
+          sosmedRoutes,
 
           // PROFILE UMKM
           profileRoutes,

@@ -1,10 +1,33 @@
-import { UiList, UiTitleAndSearch } from "@/components/UiListTable";
-import { useDummiesDataStore } from "@/store/dummy";
+import {
+  UiList,
+  UiListAvatar,
+  UiTitleAndSearch,
+} from "@/components/UiListTable";
+import { useAxios } from "@/store/useAxios.js";
 import { FaStar } from "@react-icons/all-files/fa/FaStar";
 import { FaThumbsUp } from "@react-icons/all-files/fa/FaThumbsUp";
+import { useEffect, useRef, useState } from "react";
 
 export const ProductDataList = () => {
-  const products = useDummiesDataStore.products;
+  const [products, setProducts] = useState([]);
+  const fetchingProduct = useRef(null);
+
+  useEffect(() => {
+    if (fetchingProduct.current) return;
+
+    fetchingProduct.current = true;
+
+    (async () => {
+      try {
+        const res = await useAxios.get("/product");
+        const results = res.data.results;
+
+        setProducts(results);
+      } catch (error) {
+        console.log("failed for fetching products");
+      }
+    })();
+  }, []);
   return (
     <>
       <UiTitleAndSearch
@@ -18,10 +41,14 @@ export const ProductDataList = () => {
         renderItems={(product) => (
           <div className="w-full">
             <div className="flex gap-x-2">
-              <div className="min-h-15 max-h-15 min-w-15 max-w-15 bg-black/5 border border-neutral-400"></div>
+              <div className="min-h-15 max-h-15 min-w-15 max-w-15 bg-black/5 border border-neutral-400">
+                {product.photo && (
+                  <img src={`http://localhost:3001/uploads/${product.photo}`} />
+                )}
+              </div>
               <div className="w-full">
                 <p className="text-sm font-semibold">{product.name}</p>
-                <p className="text-xs italic">{product.desc}</p>
+                <p className="text-xs italic">{product.description}</p>
               </div>
             </div>
 
@@ -52,7 +79,7 @@ export const ProductDataList = () => {
                 </span>
               </p>
               <p className="font-semibold text-orange-600">
-                Rp {product.price.toLocaleString("id-ID")}
+                Rp {Number(product.price).toLocaleString("id-ID")}
               </p>
             </div>
           </div>

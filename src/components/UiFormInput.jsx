@@ -139,6 +139,7 @@ export const UiFormSelect = ({
   values = [],
   value = "",
   required = true,
+  ...props
 }) => {
   return (
     <div className="flex flex-col">
@@ -148,16 +149,13 @@ export const UiFormSelect = ({
       <select
         name={idName}
         id={idName}
-        className="border-2 border-black/10 px-3 py-1 bg-black/5 rounded">
+        className="border-2 border-black/10 px-3 py-1 bg-black/5 rounded"
+        value={value}
+        {...props}>
         {values.length > 0 &&
           values.map((v, i) => {
             return (
-              <option
-                key={v.id + v.name + label}
-                value={v.id}
-                selected={
-                  (value == "" || !value) && i == 0 ? true : v.id == value
-                }>
+              <option key={v.id + v.name + label} value={v.id}>
                 {v.name}
               </option>
             );
